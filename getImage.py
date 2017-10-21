@@ -23,6 +23,7 @@ from urllib.request import urlretrieve
 import time
 # 证书条件
 import ssl
+import os
 
 # 生成驾驶
 driver = webdriver.PhantomJS()
@@ -41,10 +42,12 @@ index = 0
 # 拿到所有的图片标签
 for a in bsObj.find_all('a', class_='photo_link '):
     # print(a)
-    得到具体的图片标签
+    # 得到具体的图片标签
     src = a.find('img')
     # 拿到图片URL
     imageurl = src['src']
+    if not os.path.exists("images"):
+        os.mkdir("images")
     # 设置图片保存的地址及名称
     imageName = 'images/%s.jpg' % index
     # 存到本地
